@@ -24,6 +24,13 @@ def SCompuesta(a: Int, b: Int, n: Int): Double = ((b-a)/n)/3 * ((-Math.pow(a, 2)
   + (1 to n -1).toList.filter(_ % 2 == 0).map(i => 2*(-Math.pow(a+i*(b-a)/n, 2)+8*a+i*(b-a)/n-12)).sum
   + (1 to n -1).toList.filter(_ % 2 != 0).map(i => 4*(-Math.pow(a+i*(b-a)/n, 2)+8*a+i*(b-a)/n-12)).sum)
 
+def S_extendida(x:Int,y:Int,fun:Double=>Double)={
+  val n = 2*(y-x)
+  val h =(y-x)/n.toDouble
+  val j_par = fun(x)+ 4 * (1 to(n-1) by 2).map(j => fun(x + j*h)).sum
+  val i_impar = fun(y) + 2 *(2 to (n-2) by 2).map(i => fun(x + i*h)).sum
+  (h / 3)*(i_impar + j_par)
+}
 @main def app(): Unit=
   println(Simpson1(3,5))
   println(SCompuesta(3,5,10))
@@ -35,3 +42,5 @@ def SCompuesta(a: Int, b: Int, n: Int): Double = ((b-a)/n)/3 * ((-Math.pow(a, 2)
   println(nums)
   val nums1 = (1 to n-1).toList.filter(_ % 2 != 0).map(i => 4*(-Math.pow(a+i*(b-a)/n, 2)))
   println(nums1)
+  //----
+  println(S_extendida(3,5,x =>(-math.pow(x,2)+ 8 *x-12)))
