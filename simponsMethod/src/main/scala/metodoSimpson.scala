@@ -24,11 +24,11 @@ def SCompuesta(a: Int, b: Int, n: Int): Double = ((b-a)/n)/3 * ((-Math.pow(a, 2)
   + (1 to n -1).toList.filter(_ % 2 == 0).map(i => 2*(-Math.pow(a+i*(b-a)/n, 2)+8*a+i*(b-a)/n-12)).sum
   + (1 to n -1).toList.filter(_ % 2 != 0).map(i => 4*(-Math.pow(a+i*(b-a)/n, 2)+8*a+i*(b-a)/n-12)).sum)
 
-def S_extendida(x:Int,y:Int,fun:Double=>Double)={
-  val n = 2*(y-x)
-  val h =(y-x)/n.toDouble
-  val j_par = fun(x)+ 4 * (1 to(n-1) by 2).map(j => fun(x + j*h)).sum
-  val i_impar = fun(y) + 2 *(2 to (n-2) by 2).map(i => fun(x + i*h)).sum
+def S_extendida(a:Int,b:Int,fun:Double=>Double)={
+  val n = 2*(b-a)
+  val h =(b-a)/n.toDouble
+  val j_par = fun(a)+ 4 * (1 to(n-1) by 2).map(j => fun(a + j*h)).sum
+  val i_impar = fun(b) + 2 *(2 to (n-2) by 2).map(i => fun(a + i*h)).sum
   (h / 3)*(i_impar + j_par)
 }
 @main def app(): Unit=
@@ -42,5 +42,33 @@ def S_extendida(x:Int,y:Int,fun:Double=>Double)={
   println(nums)
   val nums1 = (1 to n-1).toList.filter(_ % 2 != 0).map(i => 4*(-Math.pow(a+i*(b-a)/n, 2)))
   println(nums1)
-  //----
-  println(S_extendida(3,5,x =>(-math.pow(x,2)+ 8 *x-12)))
+  //funcion 1
+
+
+  println(S_extendida(3,5,x =>(-Math.pow(x,2)+ 8 *x-12)))
+  //funcion 2
+
+
+  printl(S_extendida(0,2,x =>( 3 * Math.pow(x, 2))))
+  //Funcion 3
+
+
+  println(S_extendida(-1,1,x=>(x + 2* Math.pow(x,2)- Math.pow(x,3)+5*Math.pow(x,4))))
+  //Funcion 4
+
+
+  println(S_extendida(1,2,x=>(2*x+1)/(Math.pow(x,2)+x))))
+  //Funcion 5
+
+
+  println(S_extendida(0,1,x=>(math.pow(Math.E,x))))
+ //Funcion 6
+
+
+  println(S_extendida(2,3,x=>(1/ Math.sqrt(x-1))))
+
+
+  //Funcion 7
+
+
+  println(S_extendida(0,1,x=>(1 / (1+Math.pow(x,2)))))
